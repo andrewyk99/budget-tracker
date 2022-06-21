@@ -56,6 +56,9 @@ self.addEventListener('fetch', function(e) {
                 console.log('responding with cache : ' + e.request.url)
                 return request
             }
+            else if (e.request.mode === 'navigate') {
+                return caches.match('./index.html');
+            }
             else {
                 console.log('file is not cached, fetching: ' + e.request.url)
                 return fetch(e.request)
